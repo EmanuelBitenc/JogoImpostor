@@ -62,6 +62,14 @@ O build usa `VERCEL_PROJECT_PRODUCTION_URL` para gerar canonical, URLs absolutas
 
 ## Busca, compartilhamento e acessibilidade
 
+### Vercel Web Analytics
+
+O componente oficial `@vercel/analytics/react` está integrado na entrada do React para registrar acessos ao site. No painel do projeto na Vercel, abra **Analytics → Enable** e faça um novo deploy. Os dados passam a aparecer após visitas ao endereço publicado. O modo de desenvolvimento não envia acessos reais.
+
+A integração usa apenas a medição padrão de acessos. Nomes digitados pelos jogadores, palavras secretas e dicas não são enviados como eventos personalizados. O painel mostra estatísticas de visitantes, sem identificar nominalmente as pessoas. Como as etapas do jogo usam a mesma URL, não são contadas como páginas diferentes.
+
+### Recursos implementados
+
 - A capa e o conteúdo de como jogar são pré-renderizados durante o build com React e Vite. O HTML final já contém os textos; o React hidrata a página para iniciar a interação. Não há servidor de renderização em produção.
 - O HTML inclui título, descrição, Open Graph, Twitter Card e dados estruturados de WebApplication com acesso gratuito e preço zero. Esses dados não garantem resultados especiais nos buscadores.
 - `scripts/assets.mjs` gera a imagem de compartilhamento PNG de 1200 × 630 a partir de `public/share.svg`, além do ícone para iOS. O build e o início do desenvolvimento executam a geração automaticamente.
