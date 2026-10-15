@@ -136,7 +136,7 @@ export default function App() {
       {screen === 'settings' && <section className={s.settings}>
         <div className={s.pageHeading}><span className={s.eyebrow}>ANTES DO BLEFE</span><h1 ref={headingRef} tabIndex={-1}>Prepare a mesa<span>.</span></h1><p>Chame a turma e escolha como a próxima partida vai ser.</p></div>
         <div className={s.settingsGrid}>
-          <section className={s.panel}><div className={s.sectionTitle}><h2><span>01</span> Quem vai jogar?</h2><span className={s.badge}>{settings.players.length} jogadores</span></div>
+          <section className={s.panel}><div className={s.sectionTitle}><h2><span>01</span> Quem vai jogar?</h2><span className={s.badge}>{settings.players.length} {settings.players.length === 1 ? 'jogador' : 'jogadores'}</span></div>
             <form className={s.addPlayer} onSubmit={e => { e.preventDefault(); addPlayer(); }}><label className={s.srOnly} htmlFor="player-name">Nome do jogador</label><input id="player-name" ref={nameRef} value={name} onChange={e => setName(e.target.value)} placeholder="Nome ou apelido" maxLength={24} autoComplete="off" /><button type="submit" aria-label="Adicionar jogador">+</button></form>
             <div className={s.playerList}>{settings.players.length === 0 ? <div className={s.empty}><span>＋</span><p>A turma começa por aqui.</p><small>Adicione o primeiro jogador acima.</small></div> : settings.players.map((p, i) => <div className={s.playerRow} key={p.id}><span className={s.avatar}>{String(i + 1).padStart(2, '0')}</span><span>{p.name}</span><button onClick={() => update({ players: settings.players.filter(item => item.id !== p.id) })} aria-label={`Remover ${p.name}`}>×</button></div>)}</div>
             <p className={s.helper}>Pelo menos {settings.impostors === '1' ? '3' : '5'} jogadores neste modo. Vale usar apelido.</p>
@@ -165,7 +165,7 @@ export default function App() {
           <span className={s.cardAction}>{visible ? 'Solte para esconder' : 'Segure para revelar'}</span>
         </button>
         <button className={s.secondary} disabled={!seen || visible} onClick={nextPlayer}>{playerIndex === match.players.length - 1 ? 'Iniciar rodada' : 'Próximo jogador'} <span aria-hidden="true">→</span></button>
-        <p className={s.helper}>Veja sua informação antes de continuar.</p>
+        <p className={s.helper}>{!seen ? 'Veja sua informação antes de continuar.' : visible ? 'Solte o card para esconder sua informação.' : playerIndex === match.players.length - 1 ? 'Tudo pronto. Inicie a rodada quando quiser.' : 'Informação escondida. Continue e passe o celular.'}</p>
       </section>}
 
       {screen === 'play' && match && <section className={s.centered}>
