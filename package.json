@@ -8,7 +8,7 @@
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && node scripts/build.mjs",
     "preview": "vite preview --host 0.0.0.0",
-    "test": "tsx --test src/game/game.test.ts",
+    "test": "tsx --test src/game/game.test.ts src/storage/preferences.test.ts",
     "check:seo": "node scripts/check-build.mjs"
   },
   "dependencies": {
