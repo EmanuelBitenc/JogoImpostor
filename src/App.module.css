@@ -41,6 +41,10 @@
 .textButton { min-width: 44px; min-height: 44px; }
 .empty small { color: #99a68d; }
 .addPlayer input { font-size: 16px; }
+.footer { flex-wrap: wrap; row-gap: 8px; }
+.credit { flex-basis: 100%; text-align: center; font-size: 11px; line-height: 1.7; letter-spacing: 0; color: #98a38c; }
+.credit a { display: inline-block; padding: 8px 0; color: inherit; text-decoration-color: #98a38c55; text-underline-offset: 3px; }
+.credit a:hover { color: #c5f66a; text-decoration-color: currentColor; }
 /* Grid items and fieldsets must shrink below their content's intrinsic width. */
 .settingsGrid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
 .panel, .rightColumn, .fieldset { min-width: 0; }
