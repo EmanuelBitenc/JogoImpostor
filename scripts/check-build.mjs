@@ -21,7 +21,7 @@ if (configured) {
   const origin = new URL(configured.includes('://') ? configured : `https://${configured}`).origin + '/';
   assert.ok(html.includes(`<link rel="canonical" href="${origin}"`));
   assert.ok(html.includes(`<meta property="og:url" content="${origin}"`));
-  assert.ok(html.includes(`content="${origin}share.png"`));
+  assert.ok(html.includes(`content="${origin}share.png?v=2"`));
   assert.ok((await readFile('dist/sitemap.xml', 'utf8')).includes(`<loc>${origin}</loc>`));
   if (process.env.VERCEL_ENV !== 'preview') { assert.ok(robots.includes('Allow: /')); assert.ok(robots.includes(`Sitemap: ${origin}sitemap.xml`)); }
 } else {

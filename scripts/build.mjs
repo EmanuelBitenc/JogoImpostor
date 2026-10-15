@@ -30,12 +30,12 @@ const application = {
   applicationCategory: 'GameApplication', operatingSystem: 'Web', inLanguage: 'pt-BR',
   description: 'Jogo do impostor completo e gratuito para jogar com amigos em um único celular, sem cadastro.',
   isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },
-  ...(siteUrl ? { url: siteUrl, image: new URL('share.png', siteUrl).href } : {}),
+  ...(siteUrl ? { url: siteUrl, image: new URL('share.png?v=2', siteUrl).href } : {}),
 };
 const head = [`<script type="application/ld+json">${JSON.stringify(application).replaceAll('<', '\\u003c')}</script>`];
 if (siteUrl) {
   head.push(`<link rel="canonical" href="${escape(siteUrl)}" />`, `<meta property="og:url" content="${escape(siteUrl)}" />`);
-  html = html.replaceAll('content="/share.png"', `content="${escape(new URL('share.png', siteUrl).href)}"`);
+  html = html.replaceAll('content="/share.png?v=2"', `content="${escape(new URL('share.png?v=2', siteUrl).href)}"`);
   await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${escape(siteUrl)}</loc></url></urlset>\n`);
 } else {
   console.info('SEO: domínio público ainda não definido. Configure SITE_URL ou publique na Vercel para gerar canonical e sitemap com o endereço real.');

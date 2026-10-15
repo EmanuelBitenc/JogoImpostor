@@ -4,7 +4,8 @@ import sharp from 'sharp';
 
 export async function generateAssets() {
   const source = await readFile(new URL('../public/share.svg', import.meta.url));
-  await sharp(source).png({ palette: true }).toFile(fileURLToPath(new URL('../public/share.png', import.meta.url)));
+  // Rasterize larger, then downsample for smooth edges without palette dithering.
+  await sharp(source, { density: 288 }).resize(1200, 630, { kernel: 'lanczos3' }).png({ compressionLevel: 9 }).toFile(fileURLToPath(new URL('../public/share.png', import.meta.url)));
   await sharp(fileURLToPath(new URL('../public/favicon.svg', import.meta.url))).resize(180, 180).png().toFile(fileURLToPath(new URL('../public/apple-touch-icon.png', import.meta.url)));
 }
 
