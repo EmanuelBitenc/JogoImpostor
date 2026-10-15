@@ -19,14 +19,14 @@ const escape = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;')
 
 await generateAssets();
 await build();
-const ssrDir = 'node_modules/.cache/entre-nos-prerender';
+const ssrDir = 'node_modules/.cache/um-de-nos-prerender';
 await build({ build: { ssr: 'src/entry-server.tsx', outDir: ssrDir, emptyOutDir: true } });
 const { render } = await import(pathToFileURL(resolve(ssrDir, 'entry-server.js')).href);
 let html = await readFile('dist/index.html', 'utf8');
 html = html.replace('<div id="root"></div>', `<div id="root">${render()}</div>`);
 
 const application = {
-  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Entre Nós — Jogo do Impostor',
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Um de Nós — Jogo do Impostor',
   applicationCategory: 'GameApplication', operatingSystem: 'Web', inLanguage: 'pt-BR',
   description: 'Jogo do impostor completo e gratuito para jogar com amigos em um único celular, sem cadastro.',
   isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },

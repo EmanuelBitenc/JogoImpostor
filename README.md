@@ -1,4 +1,4 @@
-# Entre Nós — Jogo do Impostor
+# Um de Nós — Jogo do Impostor
 
 Jogo para amigos em um único celular, feito com React, TypeScript, Vite e CSS Modules. Interface em português e adaptada para celular.
 

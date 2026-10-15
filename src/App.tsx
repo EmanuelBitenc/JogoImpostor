@@ -6,7 +6,7 @@ import type { Category, Match, Settings } from './types';
 import s from './App.module.css';
 
 const categories = catalog as Category[];
-const storageKey = 'entre-nos:settings:v1';
+const storageKey = 'um-de-nos:settings:v1';
 const defaults: Settings = { players: [], categories: categories.map(c => c.id), impostors: '1', rounds: '2' };
 
 function loadSettings(): Settings {
@@ -106,7 +106,7 @@ export default function App() {
   return <div className={s.app}>
     <a className={s.skipLink} href="#conteudo">Pular para o conteúdo</a>
     <header className={s.header}>
-      <button className={s.brand} onClick={() => { if (screen === 'settings') setScreen('cover'); }} disabled={screen !== 'settings'} aria-label="Entre Nós — voltar à capa"><Mask small /><span>entre<span className={s.brandAccent}>nós.</span></span></button>
+      <button className={s.brand} onClick={() => { if (screen === 'settings') setScreen('cover'); }} disabled={screen !== 'settings'} aria-label="Um de Nós — voltar à capa"><Mask small /><span>um de <span className={s.brandAccent}>nós.</span></span></button>
       <span className={s.headerTag}><i /> UM CELULAR. VÁRIOS SUSPEITOS.</span>
     </header>
     <main id="conteudo" tabIndex={-1} key={`${screen}-${screen === 'reveal' ? playerIndex : ''}`} className={`${s.main} ${s.screenEnter}`}>
@@ -128,7 +128,7 @@ export default function App() {
         </div>
         <div className={s.steps}><div><b>01</b><span>Configure o jogo</span></div><div><b>02</b><span>Descubra a palavra</span></div><div><b>03</b><span>Desconfie de todo mundo.</span></div></div>
         <section className={s.howTo} aria-labelledby="como-jogar">
-          <div className={s.howToHeading}><span className={s.eyebrow}>TODO MUNDO PODE JOGAR</span><h2 id="como-jogar">Jogo do impostor com amigos.<br /><span>Completo e gratuito.</span></h2><p>Reúna a turma e passe o celular de mão em mão. O Entre Nós é um jogo de palavras secretas, pistas e dedução para jogar juntos, no mesmo lugar.</p></div>
+          <div className={s.howToHeading}><span className={s.eyebrow}>TODO MUNDO PODE JOGAR</span><h2 id="como-jogar">Jogo do impostor com amigos.<br /><span>Completo e gratuito.</span></h2><p>Reúna a turma e passe o celular de mão em mão. O Um de Nós é um jogo de palavras secretas, pistas e dedução para jogar juntos, no mesmo lugar.</p></div>
           <div className={s.instructions}><h3>Como jogar</h3><ol><li><strong>Prepare a partida.</strong> Adicione pelo menos 3 jogadores, escolha as categorias, os impostores e a quantidade de rodadas até a votação. Com 2 impostores ou no modo aleatório, são pelo menos 5 pessoas.</li><li><strong>Veja seu segredo.</strong> Cada pessoa segura o card para consultar a palavra. O impostor recebe uma dica e precisa improvisar. Solte o card antes de passar o aparelho.</li><li><strong>Converse e desconfie.</strong> Cada jogador fala uma palavra relacionada ao segredo. O app sorteia quem começa e informa quando o grupo deve votar.</li><li><strong>Descubra quem está mentindo.</strong> Façam a votação entre vocês e revelem os impostores ao terminar. O impostor também pode tentar adivinhar a palavra na própria vez: se acertar, ganha; se errar, perde individualmente.</li></ol></div>
         </section>
       </section>}
@@ -177,7 +177,7 @@ export default function App() {
 
       {screen === 'result' && match && <section className={s.centered}><span className={s.eyebrow}>MISTÉRIO RESOLVIDO</span><h1 ref={headingRef} tabIndex={-1}>Fim do blefe<span className={s.lime}>.</span></h1><p className={s.muted}>E aí, vocês desconfiaram da pessoa certa?</p><div className={s.resultCard}><Mask small /><span className={s.eyebrow}>{match.impostorIds.length === 1 ? 'O IMPOSTOR ERA' : 'OS IMPOSTORES ERAM'}</span><h2 className={s.impostorName}>{match.players.filter(p => match.impostorIds.includes(p.id)).map(p => p.name).join(' & ')}</h2><div className={s.resultWord}><span>A PALAVRA SECRETA</span><strong>{match.word.palavra}</strong><small>Dica: {match.hint}</small></div></div><button className={s.primary} onClick={() => { setMatch(null); setScreen('settings'); }}>Recomeçar jogo <span aria-hidden="true">↗</span></button><p className={s.helper}>Essa palavra fica fora das próximas partidas.</p></section>}
     </main>
-    <footer className={s.footer}><span>FEITO PARA JOGAR JUNTO.</span><span>O segredo fica entre nós. <span className={s.lime}>✳</span></span></footer>
+    <footer className={s.footer}><span>FEITO PARA JOGAR JUNTO.</span><span>O segredo está em um de nós. <span className={s.lime}>✳</span></span></footer>
     {confirm && <div className={s.backdrop} onClick={closeConfirm}><section className={s.dialog} role="dialog" aria-modal="true" aria-labelledby="dialog-title" onClick={e => e.stopPropagation()} onKeyDown={e => { if (e.key === 'Tab') { const buttons = [...e.currentTarget.querySelectorAll('button')]; const first = buttons[0]; const last = buttons[buttons.length - 1]; if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); } } }}><span className={s.eyebrow}>ÚLTIMA CHANCE DE BLEFAR</span><h2 id="dialog-title">O grupo já terminou?</h2><p>Isso vai mostrar os impostores e a palavra secreta para todo mundo.</p><button className={s.primary} onClick={() => { setConfirm(false); setScreen('result'); }}>Sim, revelar o segredo ↗</button><button ref={cancelRef} className={s.secondary} onClick={closeConfirm}>Continuar jogando</button></section></div>}
   </div>;
 }
