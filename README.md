@@ -13,6 +13,25 @@ npm run dev
 
 O endereço local aparece no terminal. Para abrir em um celular na mesma rede, use o endereço de rede exibido pelo Vite e permita o acesso ao servidor no firewall, se necessário.
 
+## Organização do código
+
+```text
+src/
+├── app/           # App e useGame: navegação e estado da sessão
+├── screens/       # Uma pasta por tela, com componente e CSS Module
+├── components/    # Layout, máscara, jogadores, categorias, opções, card e diálogo
+├── game/          # Tipos, regras e sorteios, sem dependência de React
+├── data/          # Catálogo JSON e acesso tipado às categorias
+├── storage/       # Leitura, validação e gravação das preferências
+├── styles/        # Estilos globais e classes visuais compartilhadas
+├── main.tsx       # Entrada no navegador, hidratação e Analytics
+└── entry-server.tsx # Entrada de pré-renderização durante o build
+```
+
+`app/useGame.ts` permanece montado durante as trocas de tela para preservar a partida e as palavras usadas. As telas recebem dados e ações por propriedades; não importam umas às outras. `SecretCard/useRevealCard.ts` controla somente a consulta temporária da informação e é reiniciado para cada jogador. A confirmação usa um portal, com gerenciamento de foco e fechamento por Escape. As regras não acessam armazenamento ou componentes, e apenas as preferências são persistidas no navegador.
+
+Estilos de cada tela e componente ficam ao lado do respectivo arquivo. `styles/shared.module.css` reúne botões, painéis e textos usados por mais de uma tela. Os testes cobrem regras de sorteio e dados de preferências corrompidos, além da execução durante a pré-renderização.
+
 ```sh
 npm test
 npm run build
@@ -52,7 +71,7 @@ O app não gerencia votos, eliminações ou vencedores. No modo aleatório, a qu
 }
 ```
 
-Os testes verificam a integridade do catálogo e as regras de sorteio. Para permitir a mesma palavra em várias categorias, reutilize o mesmo ID para manter o bloqueio global (e ajuste a verificação de IDs únicos no teste).
+Os testes em `src/game/game.test.ts` verificam a integridade do catálogo e as regras de sorteio em `src/game/rules.ts`. Para permitir a mesma palavra em várias categorias, reutilize o mesmo ID para manter o bloqueio global (e ajuste a verificação de IDs únicos no teste).
 
 ## Vercel
 
