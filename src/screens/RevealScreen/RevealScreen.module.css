@@ -1,0 +1,31 @@
+.playerName.playerName {
+  font-size: 40px;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+  margin: 8px 0 12px;
+}
+.progress {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+  max-width: 250px;
+  margin: 23px 0 30px;
+}
+.progress span {
+  height: 4px;
+  flex: 1;
+  background: #32392b;
+  border-radius: 4px;
+}
+.progress .progressActive {
+  background: #c5f66a;
+}
+
+@media (max-width: 600px) {
+  .playerName.playerName {
+    font-size: 36px;
+  }
+  .progress {
+    margin-bottom: 26px;
+  }
+}

@@ -1,0 +1,46 @@
+.fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.fieldset legend {
+  font-size: 12px;
+  color: #adb7a2;
+  margin-bottom: 10px;
+}
+.segmented {
+  display: flex;
+  background: #12160f;
+  border: 1px solid #ffffff09;
+  border-radius: 10px;
+  padding: 4px;
+  gap: 4px;
+}
+.segmented button {
+  flex: 1;
+  padding: 10px 4px;
+  border: 0;
+  border-radius: 7px;
+  color: #929d85;
+  background: none;
+  font-size: 12px;
+  min-height: 40px;
+}
+.segmented .selectedSegment {
+  background: #c5f66a;
+  color: #1b250f;
+  font-weight: 700;
+}
+
+.segmented button {
+  min-height: 44px;
+}
+
+.fieldset {
+  min-width: 0;
+}
+
+.segmented button {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}

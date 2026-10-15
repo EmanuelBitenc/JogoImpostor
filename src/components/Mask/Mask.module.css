@@ -1,0 +1,11 @@
+.smallMask {
+  width: 39px;
+  height: 34px;
+  color: #c5f66a;
+}
+.mask {
+  width: 160px;
+  height: 120px;
+  align-self: center;
+  margin: 5px 0 0;
+}

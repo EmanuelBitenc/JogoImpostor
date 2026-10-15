@@ -1,0 +1,78 @@
+.starter {
+  margin-top: 30px;
+  border: 1px solid #c5f66a35;
+  background: #c5f66a0a;
+  border-radius: 16px;
+  width: 100%;
+  padding: 22px 25px;
+  text-align: left;
+  position: relative;
+}
+.starter > span:first-child {
+  display: block;
+  color: #adc78d;
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin-bottom: 7px;
+}
+.starter > strong {
+  display: block;
+  font-family: "Space Grotesk Variable", sans-serif;
+  color: #c5f66a;
+  font-size: 32px;
+  letter-spacing: -1px;
+  overflow-wrap: anywhere;
+  padding-right: 25px;
+}
+.starter > span:last-child {
+  position: absolute;
+  right: 24px;
+  top: 36px;
+  color: #c5f66a;
+  font-size: 28px;
+}
+.rules {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+  margin: 22px 0 20px;
+}
+.rules > div {
+  display: flex;
+  gap: 14px;
+  padding: 17px 0;
+  border-bottom: 1px solid #ffffff0d;
+}
+.ruleIcon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid #ffffff15;
+  color: #adbd97;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.rules strong {
+  font-size: 13px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 6px;
+}
+.rules p > span {
+  font-size: 12px;
+  color: #919e84;
+  line-height: 1.7;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .starter {
+    padding: 20px;
+  }
+  .starter > strong {
+    font-size: 29px;
+  }
+}
